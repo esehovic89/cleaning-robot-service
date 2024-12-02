@@ -12,7 +12,7 @@ repos:
     - id: mypy
       name: mypy
       language: system
-      entry: python -m mypy --explicit-package-bases
+      entry: python -m mypy
       types: [python]
       stages: [pre-commit]
       require_serial: true
