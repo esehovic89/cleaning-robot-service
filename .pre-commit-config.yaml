@@ -7,3 +7,12 @@ repos:
       stages: [pre-commit]
     - id: ruff-format
       stages: [pre-commit]
+- repo: local
+  hooks:
+    - id: mypy
+      name: mypy
+      language: system
+      entry: python -m mypy
+      types: [python]
+      stages: [pre-commit]
+      require_serial: true
