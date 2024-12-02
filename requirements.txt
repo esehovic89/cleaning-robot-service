@@ -4,3 +4,13 @@
 #
 #    pip-compile --allow-unsafe --no-emit-index-url requirements.in
 #
+annotated-types==0.7.0
+    # via pydantic
+pydantic==2.10.2
+    # via -r requirements.in
+pydantic-core==2.27.1
+    # via pydantic
+typing-extensions==4.12.2
+    # via
+    #   pydantic
+    #   pydantic-core
