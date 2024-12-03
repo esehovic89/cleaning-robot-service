@@ -1,4 +1,4 @@
-FROM python:3.9
+FROM python:3.10
 
 
 WORKDIR /src
@@ -14,3 +14,4 @@ COPY ./src /src
 
 
 CMD ["fastapi", "run", "api/main.py", "--port", "5000"]
+CMD ["uvicorn", "src.api.main:app", "--host", "0.0.0.0", "--port", "5000"]

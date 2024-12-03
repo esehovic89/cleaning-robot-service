@@ -1,9 +1,9 @@
 from decimal import Decimal
 
-from domain.cleaning_result import CleaningResult
+from domain.execution_log import ExecutionLog
 
 
-class CleaningResultFactory:
+class ExecutionLogFactory:
     def __init__(self):
         self._commands = 2
         self._result = 4
@@ -21,7 +21,7 @@ class CleaningResultFactory:
         self._duration = duration
         return self
 
-    def build(self) -> CleaningResult:
-        return CleaningResult(
+    def build(self) -> ExecutionLog:
+        return ExecutionLog(
             commands=self._commands, result=self._result, duration=self._duration
         )
