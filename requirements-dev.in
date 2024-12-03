@@ -1,6 +1,7 @@
--r requirements.txt
+-r requirements.in
 
 pre-commit==4.0.1
 mypy==1.8.0
 pip-tools==7.4.1
 pytest==8.3.4
+httpx

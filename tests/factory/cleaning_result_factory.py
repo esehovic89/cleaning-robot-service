@@ -1,10 +1,9 @@
 from decimal import Decimal
 
-from src.domain.cleaning_result import CleaningResult
+from domain.cleaning_result import CleaningResult
 
 
 class CleaningResultFactory:
-
     def __init__(self):
         self._commands = 2
         self._result = 4
@@ -24,7 +23,5 @@ class CleaningResultFactory:
 
     def build(self) -> CleaningResult:
         return CleaningResult(
-            commands=self._commands,
-            result=self._result,
-            duration=self._duration
+            commands=self._commands, result=self._result, duration=self._duration
         )
