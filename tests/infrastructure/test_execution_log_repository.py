@@ -1,5 +1,5 @@
+from src.infrastructure.execution_log_repository import ExecutionLogRepository
 from tests.factory.execution_log_factory import ExecutionLogFactory
-from infrastructure.execution_log_repository import ExecutionLogRepository
 
 
 class TestExecutionLogRepository:

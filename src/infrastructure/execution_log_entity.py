@@ -1,7 +1,8 @@
-from sqlalchemy import Column, Integer, DateTime, String
 from datetime import datetime
 
-from infrastructure.db.db_engine import Base
+from sqlalchemy import Column, DateTime, Integer, String
+
+from src.infrastructure.db.db_engine import Base
 
 
 class ExecutionLogEntity(Base):

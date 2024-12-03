@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
 
-from domain.execution_log import ExecutionLog
-from infrastructure.db.db_engine import DBEngine
-from infrastructure.execution_log_entity import ExecutionLogEntity
+from src.domain.execution_log import ExecutionLog
+from src.infrastructure.db.db_engine import DBEngine
+from src.infrastructure.execution_log_entity import ExecutionLogEntity
 
 
 class ExecutionLogRepository:

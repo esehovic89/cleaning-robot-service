@@ -1,4 +1,4 @@
-from typing import Optional, Any
+from typing import Any, Optional
 
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
@@ -14,9 +14,9 @@ class DBEngine:
         if DBEngine._db_engine:
             return DBEngine._db_engine
 
-        from infrastructure.db.db_config import (
-            DB_NAME,
+        from src.infrastructure.db.db_config import (
             DB_ENDPOINT,
+            DB_NAME,
             DB_PASSWORD,
             DB_USERNAME,
         )

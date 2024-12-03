@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+  web:
+    build: .
+    depends_on:
+      - db
+    environment:
+      DB_ENDPOINT: db
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: test_db
+    volumes:
+      - ./src:/src
+    ports:
+      - "5000:5000"
+  db:
+    image: postgres:11.5
+    command: -c fsync=off -c full_page_writes=off -c shared_buffers=512MB -c autovacuum=off
+    environment:
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: test_db
+    ports:
+      - "5432:5432"

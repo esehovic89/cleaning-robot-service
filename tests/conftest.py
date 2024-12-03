@@ -3,14 +3,18 @@ from decimal import Decimal
 from unittest.mock import patch
 
 import pytest
+from starlette.testclient import TestClient
 
-from infrastructure.db.db_engine import DBEngine, Base
+from api.main import app
+from src.infrastructure.db.db_engine import Base, DBEngine
+
+client = TestClient(app)
 
 
 @pytest.fixture
 def mock_perf_counter():
     with patch(
-        "application.cleaning_robot_service.perf_counter",
+        "src.application.cleaning_robot_service.perf_counter",
         side_effect=[Decimal("100.00"), Decimal("100.00123")],
     ) as mock:
         yield mock

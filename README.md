@@ -69,7 +69,7 @@ Run
 pytest _part_to_the_test_file_
 ````
 
-**Note:** Make sure to run `docker compose -f docker-compose-test.yml up -d` in case test needs DB access.
+**Note:** Make sure to run `docker compose -f docker-compose-local-db.yml up -d` in case test needs DB access.
 
 ## How does this project manage dependencies
 

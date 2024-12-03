@@ -1,5 +1,5 @@
-from application.cleaning_robot_service import CleaningRobotService
-from domain.direction_enum import DirectionEnum
+from src.application.cleaning_robot_service import CleaningRobotService
+from src.domain.direction_enum import DirectionEnum
 from tests.factory.clean_command_factory import CleanCommandFactory
 from tests.factory.execution_log_factory import ExecutionLogFactory
 from tests.factory.move_command_factory import MoveCommandFactory
@@ -90,7 +90,7 @@ class TestCleaningRobotService:
 
         test_clean_command = (
             CleanCommandFactory()
-            .start(test_start)
+            .start_point(test_start)
             .commands(test_circle_move_patter)
             .build()
         )

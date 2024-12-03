@@ -1,9 +1,9 @@
 from decimal import Decimal
-
-from domain.execution_log import ExecutionLog
-from domain.direction_enum import DirectionEnum
-from domain.clean_command import CleanCommand
 from time import perf_counter
+
+from src.domain.clean_command import CleanCommand
+from src.domain.direction_enum import DirectionEnum
+from src.domain.execution_log import ExecutionLog
 
 SINGLE_STEP = 1
 X_COORDINATE_KEY = 0
@@ -17,8 +17,8 @@ class CleaningRobotService:
 
     def clean(self, clean_command: CleanCommand) -> ExecutionLog:
         start_time = perf_counter()
-        self._current_position = clean_command.start
 
+        self._current_position = clean_command.start_point
         self._cleaned_positions.add(self._current_position)
 
         for move in clean_command.commands:

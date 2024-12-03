@@ -1,6 +1,6 @@
 from decimal import Decimal
 
-from domain.execution_log import ExecutionLog
+from src.domain.execution_log import ExecutionLog
 
 
 class ExecutionLogFactory:
