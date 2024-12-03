@@ -1,4 +1,4 @@
-from tests.factory.cleaning_result_factory import ExecutionLogFactory
+from tests.factory.execution_log_factory import ExecutionLogFactory
 from infrastructure.execution_log_repository import ExecutionLogRepository
 
 

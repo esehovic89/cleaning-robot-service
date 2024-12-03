@@ -7,7 +7,7 @@ from fastapi.testclient import TestClient
 from api.clean_endpoint import CLEANING_ENDPOINT
 from api.main import app
 from tests.factory.clean_command_factory import CleanCommandFactory
-from tests.factory.cleaning_result_factory import ExecutionLogFactory
+from tests.factory.execution_log_factory import ExecutionLogFactory
 
 client = TestClient(app)
 

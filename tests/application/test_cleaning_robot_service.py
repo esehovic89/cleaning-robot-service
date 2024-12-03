@@ -1,7 +1,7 @@
 from application.cleaning_robot_service import CleaningRobotService
 from domain.direction_enum import DirectionEnum
 from tests.factory.clean_command_factory import CleanCommandFactory
-from tests.factory.cleaning_result_factory import ExecutionLogFactory
+from tests.factory.execution_log_factory import ExecutionLogFactory
 from tests.factory.move_command_factory import MoveCommandFactory
 
 
