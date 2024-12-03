@@ -7,7 +7,7 @@ class ExecutionLogFactory:
     def __init__(self):
         self._commands = 2
         self._result = 4
-        self._duration = Decimal("0.0d0123")
+        self._duration = Decimal("0.00123")
 
     def commands(self, commands: int):
         self._commands = commands
