@@ -7,6 +7,12 @@ repos:
       stages: [pre-commit]
     - id: ruff-format
       stages: [pre-commit]
+- repo: https://github.com/pycqa/isort
+  rev: 5.12.0
+  hooks:
+    - id: isort
+      name: isort (python)
+      stages: [pre-commit]
 - repo: local
   hooks:
     - id: mypy
@@ -16,3 +22,4 @@ repos:
       types: [python]
       stages: [pre-commit]
       require_serial: true
+
