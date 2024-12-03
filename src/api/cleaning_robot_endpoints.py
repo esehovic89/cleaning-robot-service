@@ -1,8 +1,8 @@
 from fastapi import APIRouter
 
+from api.cleaning_result import CleaningResult
 from src.application.cleaning_robot_service import CleaningRobotService
 from src.domain.clean_command import CleanCommand
-from src.domain.cleaning_result import CleaningResult
 from src.infrastructure.execution_log_repository import ExecutionLogRepository
 
 CLEANING_ENDPOINT = "/tibber-developer-test/enter-path/"

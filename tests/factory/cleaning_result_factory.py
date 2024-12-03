@@ -1,4 +1,4 @@
-from src.domain.cleaning_result import CleaningResult
+from api.cleaning_result import CleaningResult
 
 
 class CleaningResultFactory:

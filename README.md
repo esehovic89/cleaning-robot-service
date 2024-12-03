@@ -42,6 +42,12 @@ make init
 ````
 **Note**: Please make sure this is done right after cloning the repository.
 
+If you are using Window machine, follow these steps:
+- create venv
+- activate the venv
+- install dev-requirements `pip install -r requirements-dev.txt`
+- install pre-commit `pre-commit install`
+
 ## Project structure
 
 
