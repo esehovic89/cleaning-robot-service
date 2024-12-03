@@ -1,9 +1,8 @@
-from src.domain.direction_enum import DirectionEnum
-from src.domain.move_command import MoveCommand
+from domain.direction_enum import DirectionEnum
+from domain.move_command import MoveCommand
 
 
 class MoveCommandFactory:
-
     def __init__(self):
         self._direction = DirectionEnum.east
         self._steps = 2
@@ -17,7 +16,4 @@ class MoveCommandFactory:
         return self
 
     def build(self) -> MoveCommand:
-        return MoveCommand(
-            direction=self._direction,
-            steps=self._steps
-        )
+        return MoveCommand(direction=self._direction, steps=self._steps)
