@@ -1,7 +1,7 @@
 from application.cleaning_robot_service import CleaningRobotService
 from domain.direction_enum import DirectionEnum
 from tests.factory.clean_command_factory import CleanCommandFactory
-from tests.factory.cleaning_result_factory import CleaningResultFactory
+from tests.factory.execution_log_factory import ExecutionLogFactory
 from tests.factory.move_command_factory import MoveCommandFactory
 
 
@@ -14,7 +14,7 @@ class TestCleaningRobotService:
         )
         test_clean_command = CleanCommandFactory().commands([test_move_command]).build()
 
-        expected_result = CleaningResultFactory().commands(1).result(2).build()
+        expected_result = ExecutionLogFactory().commands(1).result(2).build()
 
         service = CleaningRobotService()
         result = service.clean(clean_command=test_clean_command)
@@ -29,7 +29,7 @@ class TestCleaningRobotService:
         )
         test_clean_command = CleanCommandFactory().commands([test_move_command]).build()
 
-        expected_result = CleaningResultFactory().commands(1).result(2).build()
+        expected_result = ExecutionLogFactory().commands(1).result(2).build()
 
         service = CleaningRobotService()
         result = service.clean(clean_command=test_clean_command)
@@ -44,7 +44,7 @@ class TestCleaningRobotService:
         )
         test_clean_command = CleanCommandFactory().commands([test_move_command]).build()
 
-        expected_result = CleaningResultFactory().commands(1).result(2).build()
+        expected_result = ExecutionLogFactory().commands(1).result(2).build()
 
         service = CleaningRobotService()
         result = service.clean(clean_command=test_clean_command)
@@ -59,7 +59,7 @@ class TestCleaningRobotService:
         )
         test_clean_command = CleanCommandFactory().commands([test_move_command]).build()
 
-        expected_result = CleaningResultFactory().commands(1).result(2).build()
+        expected_result = ExecutionLogFactory().commands(1).result(2).build()
 
         service = CleaningRobotService()
         result = service.clean(clean_command=test_clean_command)
@@ -95,7 +95,7 @@ class TestCleaningRobotService:
             .build()
         )
 
-        expected_result = CleaningResultFactory().commands(4).result(4).build()
+        expected_result = ExecutionLogFactory().commands(4).result(4).build()
 
         service = CleaningRobotService()
         result = service.clean(clean_command=test_clean_command)

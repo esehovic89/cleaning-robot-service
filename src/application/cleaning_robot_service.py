@@ -1,8 +1,8 @@
 from decimal import Decimal
 
+from domain.execution_log import ExecutionLog
 from domain.direction_enum import DirectionEnum
 from domain.clean_command import CleanCommand
-from domain.cleaning_result import CleaningResult
 from time import perf_counter
 
 SINGLE_STEP = 1
@@ -15,7 +15,7 @@ class CleaningRobotService:
         self._cleaned_positions = set()
         self._current_position = None
 
-    def clean(self, clean_command: CleanCommand) -> CleaningResult:
+    def clean(self, clean_command: CleanCommand) -> ExecutionLog:
         start_time = perf_counter()
         self._current_position = clean_command.start
 
@@ -30,7 +30,7 @@ class CleaningRobotService:
 
         end_time = perf_counter()
 
-        return CleaningResult(
+        return ExecutionLog(
             commands=len(clean_command.commands),
             result=len(self._cleaned_positions),
             duration=Decimal(str(end_time - start_time)),

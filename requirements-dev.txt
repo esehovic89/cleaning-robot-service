@@ -10,7 +10,6 @@ anyio==4.6.2.post1
     # via
     #   httpx
     #   starlette
-    #   watchfiles
 build==1.2.2.post1
     # via pip-tools
 certifi==2024.8.30
@@ -22,53 +21,35 @@ cfgv==3.4.0
 click==8.1.7
     # via
     #   pip-tools
-    #   typer
     #   uvicorn
 distlib==0.3.9
     # via virtualenv
-dnspython==2.7.0
-    # via email-validator
-email-validator==2.2.0
-    # via fastapi
 exceptiongroup==1.2.2
     # via
     #   anyio
     #   pytest
-fastapi[standard]==0.113.0
+fastapi==0.115.5
     # via -r /home/sedin/Git/cleaning-robot-service/requirements.in
-fastapi-cli[standard]==0.0.5
-    # via fastapi
 filelock==3.16.1
     # via virtualenv
+greenlet==3.1.1
+    # via sqlalchemy
 h11==0.14.0
     # via
     #   httpcore
     #   uvicorn
 httpcore==1.0.7
     # via httpx
-httptools==0.6.4
-    # via uvicorn
 httpx==0.28.0
-    # via
-    #   -r requirements-dev.in
-    #   fastapi
+    # via -r requirements-dev.in
 identify==2.6.3
     # via pre-commit
 idna==3.10
     # via
     #   anyio
-    #   email-validator
     #   httpx
 iniconfig==2.0.0
     # via pytest
-jinja2==3.1.4
-    # via fastapi
-markdown-it-py==3.0.0
-    # via rich
-markupsafe==3.0.2
-    # via jinja2
-mdurl==0.1.2
-    # via markdown-it-py
 mypy==1.8.0
     # via -r requirements-dev.in
 mypy-extensions==1.0.0
@@ -87,35 +68,27 @@ pluggy==1.5.0
     # via pytest
 pre-commit==4.0.1
     # via -r requirements-dev.in
+psycopg2-binary==2.9.10
+    # via -r /home/sedin/Git/cleaning-robot-service/requirements.in
 pydantic==2.10.2
     # via
     #   -r /home/sedin/Git/cleaning-robot-service/requirements.in
     #   fastapi
 pydantic-core==2.27.1
     # via pydantic
-pygments==2.18.0
-    # via rich
 pyproject-hooks==1.2.0
     # via
     #   build
     #   pip-tools
 pytest==8.3.4
     # via -r requirements-dev.in
-python-dotenv==1.0.1
-    # via uvicorn
-python-multipart==0.0.19
-    # via fastapi
 pyyaml==6.0.2
-    # via
-    #   pre-commit
-    #   uvicorn
-rich==13.9.4
-    # via typer
-shellingham==1.5.4
-    # via typer
+    # via pre-commit
 sniffio==1.3.1
     # via anyio
-starlette==0.38.6
+sqlalchemy==1.4.0
+    # via -r /home/sedin/Git/cleaning-robot-service/requirements.in
+starlette==0.41.3
     # via fastapi
 tomli==2.2.1
     # via
@@ -123,8 +96,6 @@ tomli==2.2.1
     #   mypy
     #   pip-tools
     #   pytest
-typer==0.14.0
-    # via fastapi-cli
 typing-extensions==4.12.2
     # via
     #   anyio
@@ -132,21 +103,11 @@ typing-extensions==4.12.2
     #   mypy
     #   pydantic
     #   pydantic-core
-    #   rich
-    #   typer
     #   uvicorn
-uvicorn[standard]==0.32.1
-    # via
-    #   fastapi
-    #   fastapi-cli
-uvloop==0.21.0
-    # via uvicorn
+uvicorn==0.32.1
+    # via -r /home/sedin/Git/cleaning-robot-service/requirements.in
 virtualenv==20.28.0
     # via pre-commit
-watchfiles==1.0.0
-    # via uvicorn
-websockets==14.1
-    # via uvicorn
 wheel==0.45.1
     # via pip-tools
 

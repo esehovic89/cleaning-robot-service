@@ -2,7 +2,8 @@ from decimal import Decimal
 
 from pydantic import BaseModel
 
-class CleaningResult(BaseModel):
+
+class ExecutionLog(BaseModel):
     commands: int
     result: int
     duration: Decimal
