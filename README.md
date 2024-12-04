@@ -78,6 +78,7 @@ On Widows, to activate your virtual environment, run the code below:
 ````
 
 Install dev-requirements `pip install -r requirements-dev.txt`
+
 Install pre-commit `pre-commit install`
 
 **Note**: Please make sure this is done right after cloning the repository. The project was build using python 3.10
