@@ -32,6 +32,16 @@ Stored record example:
 | -------- |-----------|----------|--------|-------|
 | 1234  | $2018-05-12 12:45:10.851596      | 2        | 4      |0.000123      |
 
+## Code structure
+
+- **src** - Application source code.
+  - **api** - Contains communication with outside world. This layer does not have any business logic and entrypoint to the service.
+  - **application** - Contains different services that are needed for orchestration of business logic.
+  - **common** - Contains code that will be share in the service. For example Logger 
+  - **domain** - Contains business logic and models. For examples use case to orchestration business logic by interacting with different domain models, application services and infrastructure. 
+  - **infrastructure** - Contains communication with internal services for this service. For example DB repositories.
+- **tests** - All tests related to application source code.
+
 ## Pre requisites
 
 Install `docker` and `docker compose` on your local machine.
@@ -42,9 +52,11 @@ make init
 ````
 **Note**: Please make sure this is done right after cloning the repository.
 
-## Project structure
-
-
+If you are using Window machine, follow these steps:
+- create venv
+- activate the venv
+- install dev-requirements `pip install -r requirements-dev.txt`
+- install pre-commit `pre-commit install`
 
 ## How to run locally
 
@@ -53,6 +65,12 @@ docker compose up
 ````
 
 Open `http://127.0.0.1:5000/docs` to see OpenAPI spec of the service.
+
+To generate test data:
+- Open python inside of project 
+- Import `from tests.factory.clean_command_factory import CleanCommandFactory`
+- Generate test data by running and copy the output to OpenAPI spec:
+  - `CleanCommandFactory().build().model_dump_json()`
 
 ## How to run tests
 
@@ -69,13 +87,13 @@ Run
 pytest _part_to_the_test_file_
 ````
 
-**Note:** Make sure to run `docker compose -f docker-compose-test.yml up -d` in case test needs DB access.
+**Note:** Make sure to run `docker compose -f docker-compose-local-db.yml up -d` in case test needs DB access.
 
 ## How does this project manage dependencies
 
 For local development the project relies on environmental. This is isolated env were your project dependents live. 
 If you completed steps from [Pre requisites](#Pre requisites) you only need to activate it:
-Run 
+Run
 ````
 source .venv/bin/activate
 ````
@@ -87,3 +105,8 @@ Next step is to run:
 ````bash
 make compile-dependencies
 ````
+
+If you are having issues with the command try running these steps:
+- Make sure the `venv` is activated
+- `pip-compile --allow-unsafe --no-emit-index-url requirements.in`
+- `pip-compile --allow-unsafe --no-emit-index-url requirements-dev.in`

@@ -1,9 +1,5 @@
-from decimal import Decimal
-
-from domain.execution_log import ExecutionLog
-from domain.direction_enum import DirectionEnum
-from domain.clean_command import CleanCommand
-from time import perf_counter
+from domain.models.clean_command import CleanCommand
+from domain.models.direction_enum import DirectionEnum
 
 SINGLE_STEP = 1
 X_COORDINATE_KEY = 0
@@ -15,10 +11,8 @@ class CleaningRobotService:
         self._cleaned_positions = set()
         self._current_position = None
 
-    def clean(self, clean_command: CleanCommand) -> ExecutionLog:
-        start_time = perf_counter()
-        self._current_position = clean_command.start
-
+    def clean(self, clean_command: CleanCommand) -> int:
+        self._current_position = clean_command.start_point
         self._cleaned_positions.add(self._current_position)
 
         for move in clean_command.commands:
@@ -26,15 +20,9 @@ class CleaningRobotService:
                 self._current_position = self._move(
                     move.direction, self._current_position
                 )
+
                 self._cleaned_positions.add(self._current_position)
-
-        end_time = perf_counter()
-
-        return ExecutionLog(
-            commands=len(clean_command.commands),
-            result=len(self._cleaned_positions),
-            duration=Decimal(str(end_time - start_time)),
-        )
+        return len(self._cleaned_positions)
 
     @staticmethod
     def _move(direction, current_position: tuple[int, int]) -> tuple[int, int]:

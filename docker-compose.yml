@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+  db:
+    image: postgres:11.5
+    environment:
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: test_db
+    volumes:
+      - ./src/infrastructure/db/migration/:/docker-entrypoint-initdb.d/
+    ports:
+      - "5432:5432"
+
+  web:
+    build: .
+    environment:
+      DB_ENDPOINT: db
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: test_db
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+

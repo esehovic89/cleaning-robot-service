@@ -1,18 +1,31 @@
 import os
 from decimal import Decimal
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 import pytest
+from starlette.testclient import TestClient
 
-from infrastructure.db.db_engine import DBEngine, Base
+from api.main import app
+from src.infrastructure.db.db_engine import Base, DBEngine
+
+client = TestClient(app)
 
 
 @pytest.fixture
 def mock_perf_counter():
     with patch(
-        "application.cleaning_robot_service.perf_counter",
+        "src.domain.use_case.execute_clean_command.perf_counter",
         side_effect=[Decimal("100.00"), Decimal("100.00123")],
     ) as mock:
+        yield mock
+
+
+@pytest.fixture
+def mock_execution_log_repository():
+    with patch(
+        "src.domain.use_case.execute_clean_command.ExecutionLogRepository.save",
+    ) as mock:
+        mock.return_value = MagicMock()
         yield mock
 
 
