@@ -1,7 +1,7 @@
 from starlette.requests import Request
 from starlette.responses import Response
 
-from src.configuration.logger import Logger
+from src.common.logger import Logger
 
 APPLICATION_UNHANDLED_EXCEPTION_TEXT = "Internal server error"
 

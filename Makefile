@@ -6,13 +6,11 @@ init:
 	@echo "Installing pre-commit"
 	@. .venv/bin/activate; pre-commit install
 
-run:
-	python -m uvicorn src.api.main:app --host 0.0.0.0 --port 5000 --reload
-
 test:
-	docker compose -f docker-compose-local-db.yml up -d
-	pytest
-	docker compose -f docker-compose-local-db.yml down
+	@docker compose -f docker-compose-local-db.yml up -d
+	@sleep 1
+	@pytest
+	@docker compose -f docker-compose-local-db.yml down
 
 compile-dependencies:
 	@. .venv/bin/activate

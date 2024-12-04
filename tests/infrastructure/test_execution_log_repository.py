@@ -7,6 +7,6 @@ class TestExecutionLogRepository:
         test_cleaning_result = ExecutionLogFactory().build()
 
         repository = ExecutionLogRepository()
-        result = repository.save(cleaning_result=test_cleaning_result)
+        result = repository.save(execution_log=test_cleaning_result)
 
         assert result == 1

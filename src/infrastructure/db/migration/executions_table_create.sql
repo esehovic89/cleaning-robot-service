@@ -1,0 +1,7 @@
+CREATE TABLE executions (
+    id SERIAL PRIMARY KEY,
+    timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    commands INTEGER NOT NULL,
+    result INTEGER NOT NULL,
+    duration VARCHAR NOT NULL
+);

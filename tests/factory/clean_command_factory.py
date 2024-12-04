@@ -1,6 +1,6 @@
-from src.domain.clean_command import CleanCommand
-from src.domain.direction_enum import DirectionEnum
-from src.domain.move_command import MoveCommand
+from domain.models.clean_command import CleanCommand
+from domain.models.direction_enum import DirectionEnum
+from domain.models.move_command import MoveCommand
 from tests.factory.move_command_factory import MoveCommandFactory
 
 
