@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from domain.models.move_command import MoveCommand
+from src.domain.models.move_command import MoveCommand
 
 
 class CleanCommand(BaseModel):

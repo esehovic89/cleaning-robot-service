@@ -1,5 +1,5 @@
-from domain.models.direction_enum import DirectionEnum
 from src.application.cleaning_robot_service import CleaningRobotService
+from src.domain.models.direction_enum import DirectionEnum
 from tests.factory.clean_command_factory import CleanCommandFactory
 from tests.factory.move_command_factory import MoveCommandFactory
 

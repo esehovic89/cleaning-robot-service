@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
-from domain.models.clean_command import CleanCommand
 from src.api.cleaning_result import CleaningResult
+from src.domain.models.clean_command import CleanCommand
 from src.domain.use_case.execute_clean_command import ExecuteCleanCommand
 
 CLEANING_ENDPOINT = "/tibber-developer-test/enter-path/"

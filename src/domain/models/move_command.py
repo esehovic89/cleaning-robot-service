@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from domain.models.direction_enum import DirectionEnum
+from src.domain.models.direction_enum import DirectionEnum
 
 
 class MoveCommand(BaseModel):

@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 
-from domain.models.execution_log import ExecutionLog
+from src.domain.models.execution_log import ExecutionLog
 from src.infrastructure.db.db_engine import DBEngine
 from src.infrastructure.execution_log_entity import ExecutionLogEntity
 

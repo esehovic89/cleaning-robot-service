@@ -1,5 +1,5 @@
-from domain.models.direction_enum import DirectionEnum
-from domain.models.move_command import MoveCommand
+from src.domain.models.direction_enum import DirectionEnum
+from src.domain.models.move_command import MoveCommand
 
 
 class MoveCommandFactory:

@@ -1,4 +1,4 @@
-from domain.models.direction_enum import DirectionEnum
+from src.domain.models.direction_enum import DirectionEnum
 from src.domain.use_case.execute_clean_command import ExecuteCleanCommand
 from tests.factory.clean_command_factory import CleanCommandFactory
 from tests.factory.execution_log_factory import ExecutionLogFactory

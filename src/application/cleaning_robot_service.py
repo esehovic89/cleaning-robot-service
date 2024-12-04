@@ -1,5 +1,5 @@
-from domain.models.clean_command import CleanCommand
-from domain.models.direction_enum import DirectionEnum
+from src.domain.models.clean_command import CleanCommand
+from src.domain.models.direction_enum import DirectionEnum
 
 SINGLE_STEP = 1
 X_COORDINATE_KEY = 0
