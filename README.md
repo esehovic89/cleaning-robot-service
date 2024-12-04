@@ -56,7 +56,7 @@ pip install virtualenv
 
 Create Virtualenv
 
-To use venv in your project, in your terminal, create a new project folder, cd to the project folder in your terminal, and run the following command:
+To use venv in your project, in your terminal, cd to the project folder in your terminal, and run the following command:
 `python<version> -m venv <virtual-environment-name>`
 
 For example:
