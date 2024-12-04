@@ -46,11 +46,38 @@ Stored record example:
 
 Install `docker` and `docker compose` on your local machine.
 
-Run 
-````bash
-make init
+Virtualenv
+
+You can install venv to your host Python by running this command in your terminal:
+
 ````
-**Note**: Please make sure this is done right after cloning the repository.
+pip install virtualenv
+````
+
+Create Virtualenv
+
+To use venv in your project, in your terminal, create a new project folder, cd to the project folder in your terminal, and run the following command:
+`python<version> -m venv <virtual-environment-name>`
+
+For example:
+````
+ cd cleaning-robot-service
+ python3.10 -m venv .venv
+````
+
+Activate Virtualenv
+
+On a mac, to activate your virtual environment, run the code below:
+````
+source .venv/bin/activate
+````
+On Widows, to activate your virtual environment, run the code below:
+````
+ .venv/Scripts/activate.bat //In CMD
+ .venv/Scripts/Activate.ps1 //In Powershel
+````
+
+**Note**: Please make sure this is done right after cloning the repository. The project was build using python 3.10
 
 If you are using Window machine, follow these steps:
 - create venv
