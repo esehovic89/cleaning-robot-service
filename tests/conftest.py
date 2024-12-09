@@ -5,7 +5,7 @@ from unittest.mock import MagicMock, patch
 import pytest
 from starlette.testclient import TestClient
 
-from api.main import app
+from src.api.main import app
 from src.infrastructure.db.db_engine import Base, DBEngine
 
 client = TestClient(app)

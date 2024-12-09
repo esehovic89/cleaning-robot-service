@@ -5,6 +5,7 @@ from fastapi import status
 
 from src.api.cleaning_robot_endpoints import CLEANING_ENDPOINT
 from src.api.utils import APPLICATION_UNHANDLED_EXCEPTION_TEXT
+from src.domain.models.clean_command import CleanCommand
 from tests.conftest import client
 from tests.factory.clean_command_factory import CleanCommandFactory
 from tests.factory.cleaning_result_factory import CleaningResultFactory
@@ -38,3 +39,18 @@ class TestCleanEndpoint:
         )
         assert response.status_code == status.HTTP_500_INTERNAL_SERVER_ERROR
         assert response.text == APPLICATION_UNHANDLED_EXCEPTION_TEXT
+
+    def test_robot_clean_large_clean_command(self, mock_perf_counter) -> None:
+        import json
+
+        with open("tests/api/clean_command_large_set.json") as f:
+            test_data_set = json.load(f)
+
+        test_clean_command = CleanCommand(**test_data_set)
+        expected_result = CleaningResultFactory().places_cleaned(993737501).build()
+        response = client.post(
+            url=CLEANING_ENDPOINT,
+            json=test_clean_command.model_dump(),
+        )
+        assert response.status_code == status.HTTP_200_OK
+        assert response.text == expected_result.model_dump_json()
