@@ -40,7 +40,7 @@ class TestCleanEndpoint:
         assert response.status_code == status.HTTP_500_INTERNAL_SERVER_ERROR
         assert response.text == APPLICATION_UNHANDLED_EXCEPTION_TEXT
 
-    def test_robot_clean_large_clean_command(self, mock_perf_counter) -> None:
+    def test_robot_clean_large_clean_command(self) -> None:
         import json
 
         with open("tests/api/clean_command_large_set.json") as f:

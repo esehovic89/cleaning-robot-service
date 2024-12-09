@@ -290,3 +290,41 @@ class TestCleaningRobotService:
         result = service.clean(clean_command=test_clean_command)
 
         assert result == 6
+
+    def test_robot_clean_in_half_circle_map_edge(self) -> None:
+        test_start = (0, 0)
+
+        test_move_north_command = (
+            MoveCommandFactory().direction(DirectionEnum.north).steps(2).build()
+        )
+        test_move_east_command = (
+            MoveCommandFactory().direction(DirectionEnum.east).steps(2).build()
+        )
+        test_move_west_command = (
+            MoveCommandFactory().direction(DirectionEnum.west).steps(2).build()
+        )
+        test_move_south_command = (
+            MoveCommandFactory().direction(DirectionEnum.south).steps(2).build()
+        )
+        test_circle_move_patter = [
+            test_move_north_command,
+            test_move_north_command,
+            test_move_east_command,
+            test_move_east_command,
+            test_move_west_command,
+            test_move_west_command,
+            test_move_south_command,
+            test_move_south_command,
+        ]
+
+        test_clean_command = (
+            CleanCommandFactory()
+            .start_point(test_start)
+            .commands(test_circle_move_patter)
+            .build()
+        )
+
+        service = CleaningRobotService()
+        result = service.clean(clean_command=test_clean_command)
+
+        assert result == 9

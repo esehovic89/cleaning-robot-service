@@ -74,7 +74,6 @@ class CleaningRobotService:
     def _get_not_unique_visits(self) -> int:
         n = len(self._visited_ranges)
         not_unique = 0
-
         for i in range(n):
             current_visited_range = self._visited_ranges[i]
             found = set()
@@ -84,77 +83,72 @@ class CleaningRobotService:
                     current_visited_range.alignment == AlignmentEnum.horizontal
                     and next_visited_range.alignment == AlignmentEnum.horizontal
                 ):
-                    t, d = self._find_horizontal_overlap(
+                    d = self._find_horizontal_overlap(
                         current_visited_range, next_visited_range
                     )
                 elif (
                     current_visited_range.alignment == AlignmentEnum.vertical
                     and next_visited_range.alignment == AlignmentEnum.vertical
                 ):
-                    t, d = self._find_vertical_overlap(
+                    d = self._find_vertical_overlap(
                         current_visited_range, next_visited_range
                     )
                 else:
-                    t, d = self._has_intersection(
+                    d = self._has_intersection(
                         current_visited_range, next_visited_range
                     )
 
-                if d not in found:
-                    not_unique += t
-                    found.add(d)
+                found.update(d)
+            not_unique += len(found)
 
         return not_unique
 
     @staticmethod
     def _find_horizontal_overlap(
-        range_one: VisitedRange, range_two: VisitedRange
-    ) -> tuple[int, tuple]:
-        (x1, y1) = range_one.point_one
-        (x2, y2) = range_one.point_two
-        (x3, y3) = range_two.point_one
-        (x4, y4) = range_two.point_two
+        segment1: VisitedRange, segment2: VisitedRange
+    ) -> set[tuple[int, int]]:
+        y1 = segment1.point_one[1]
+        y2 = segment2.point_one[1]
+        if y1 != y2:
+            return set()
 
-        if y1 != y3:
-            return 0, tuple()
+        x1_start, x1_end = sorted([segment1.point_one[0], segment1.point_two[0]])
+        x2_start, x2_end = sorted([segment2.point_one[0], segment2.point_two[0]])
 
-        x1, x2 = sorted((x1, x2))
-        x3, x4 = sorted((x3, x4))
+        overlap_start = max(x1_start, x2_start)
+        overlap_end = min(x1_end, x2_end)
 
-        overlap_start = max(x1, x3)
-        overlap_end = min(x2, x4)
-
-        if overlap_start <= overlap_end:
-            return (overlap_end - overlap_start) + 1, (overlap_start, overlap_end)
-
-        return 0, tuple()
+        return (
+            {(x, y1) for x in range(overlap_start, overlap_end + 1)}
+            if overlap_start <= overlap_end
+            else set()
+        )
 
     @staticmethod
     def _find_vertical_overlap(
-        range_one: VisitedRange, range_two: VisitedRange
-    ) -> tuple[int, tuple]:
-        x1, y1 = range_one.point_one
-        x2, y2 = range_one.point_two
-        x3, y3 = range_two.point_one
-        x4, y4 = range_two.point_two
+        segment1: VisitedRange, segment2: VisitedRange
+    ) -> set[tuple[int, int]]:
+        x1 = segment1.point_one[0]
+        x2 = segment2.point_one[0]
+        if x1 != x2:
+            return set()
 
-        if x1 != x3:
-            return 0, tuple()
+        y1_start, y1_end = sorted([segment1.point_one[1], segment1.point_two[1]])
+        y2_start, y2_end = sorted([segment2.point_one[1], segment2.point_two[1]])
 
-        y1, y2 = sorted((y1, y2))
-        y3, y4 = sorted((y3, y4))
+        overlap_start = max(y1_start, y2_start)
+        overlap_end = min(y1_end, y2_end)
 
-        overlap_start = max(y1, y3)
-        overlap_end = min(y2, y4)
-
-        if overlap_start <= overlap_end:
-            return (overlap_end - overlap_start) + 1, (overlap_start, overlap_end)
-
-        return 0, tuple()
+        return (
+            {(x1, y) for y in range(overlap_start, overlap_end + 1)}
+            if overlap_start <= overlap_end
+            else set()
+        )
 
     @staticmethod
     def _has_intersection(
         range_one: VisitedRange, range_two: VisitedRange
-    ) -> tuple[int, tuple]:
+    ) -> set[tuple[int, int]]:
         x1, y1 = range_one.point_one
         x2, y2 = range_one.point_two
         x3, y3 = range_two.point_one
@@ -162,10 +156,10 @@ class CleaningRobotService:
 
         if y1 == y2 and x3 == x4:
             if min(x1, x2) <= x3 <= max(x1, x2) and min(y3, y4) <= y1 <= max(y3, y4):
-                return 1, (x3, y1)
+                return {(x3, y1)}
 
         if x1 == x2 and y3 == y4:
             if min(x3, x4) <= x1 <= max(x3, x4) and min(y1, y2) <= y3 <= max(y1, y2):
-                return 1, (x1, y3)
+                return {(x1, y3)}
 
-        return 0, tuple()
+        return set()
