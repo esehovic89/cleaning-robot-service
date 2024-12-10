@@ -24,6 +24,4 @@ class ExecuteCleanCommand:
 
         executions_repository.save(execution_log=execution_log)
 
-        print(f"Resultsddfafd: {execution_log.duration}")
-
         return execution_log
