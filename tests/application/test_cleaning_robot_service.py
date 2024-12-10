@@ -1,3 +1,5 @@
+import pytest
+
 from src.application.cleaning_robot_service import CleaningRobotService
 from src.domain.models.direction_enum import DirectionEnum
 from tests.factory.clean_command_factory import CleanCommandFactory
@@ -152,8 +154,46 @@ class TestCleaningRobotService:
 
         assert result == 6
 
-    def test_robot_clean_in_circle(self) -> None:
-        test_start = (0, 0)
+    @pytest.mark.parametrize(
+        "test_start_point,expected",
+        [((0, 0), 4), ((1, 1), 4), ((-1, 1), 4), ((-1, -1), 4), ((1, -1), 4)],
+    )
+    def test_robot_clean_in_circle_from_center_and_all_quadrants(
+        self, test_start_point, expected
+    ) -> None:
+        test_move_east_one_step_command = (
+            MoveCommandFactory().direction(DirectionEnum.east).steps(1).build()
+        )
+        test_move_north_one_step_command = (
+            MoveCommandFactory().direction(DirectionEnum.north).steps(1).build()
+        )
+        test_move_west_one_step_command = (
+            MoveCommandFactory().direction(DirectionEnum.west).steps(1).build()
+        )
+        test_move_south_one_step_command = (
+            MoveCommandFactory().direction(DirectionEnum.south).steps(1).build()
+        )
+        test_move_patter = [
+            test_move_east_one_step_command,
+            test_move_north_one_step_command,
+            test_move_west_one_step_command,
+            test_move_south_one_step_command,
+        ]
+
+        test_clean_command = (
+            CleanCommandFactory()
+            .start_point(test_start_point)
+            .commands(test_move_patter)
+            .build()
+        )
+
+        service = CleaningRobotService()
+        result = service.clean(clean_command=test_clean_command)
+
+        assert result == expected
+
+    def test_robot_clean_in_circle_from_first_quadrant(self) -> None:
+        test_start = (1, 1)
 
         test_move_east_one_step_command = (
             MoveCommandFactory().direction(DirectionEnum.east).steps(1).build()
